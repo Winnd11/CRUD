@@ -17,7 +17,7 @@ setInterval(function checkAllLine() {
     setLine(usernameInputValue, line);
     setLine(emailInputValue, lineTwo);
     setLine(pwdInputValue, lineThree);
-}, 10 * 100);
+}, 10 * 10);
 
 let startX = 0;
 const maxWidth = 440;
