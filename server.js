@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
     debug: true
 });
 
-var scriptSql = '';
+var scriptSql = 'CREATE DATABASE IF NOT EXISTS `crud`; USE crud; CREATE TABLE IF NOT EXISTS users (id INT NOT NULL, name VARCHAR(45) NULL, email VARCHAR(45) NOT NULL, password VARCHAR(45) NOT NULL, PRIMARY KEY (ID));';
 
 connection.connect();
 connection.query(scriptSql, function (error, results, fields) {
