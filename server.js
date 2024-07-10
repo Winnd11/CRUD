@@ -8,8 +8,8 @@ const mysql = require('mysql');
 //mysql default port 3306                     
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: '', // your username
-    password: '1234', // your password
+    user: ' ', // your username
+    password: ' ', // your password
     port: '3306',
     multipleStatements: true,
     debug: true
