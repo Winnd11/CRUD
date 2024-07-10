@@ -3,7 +3,7 @@ const app = express();
 const port = 5500;
 const path = require('path');
 const sassMiddleware = require('node-sass-middleware');
-const mysql = require('mysql);
+const mysql = require('mysql');
 
 //mysql default port 3306                     
 var connection = mysql.createConnection({
@@ -34,7 +34,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    res.render(path.join(__dirname + '/public/ejs', 'index.ejs');
+    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'));
 });
 
 app.get('/crud', (req, res) => {
