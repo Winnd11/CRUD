@@ -10,8 +10,12 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: '', // your username
     password: '1234', // your password
-    database: 'crud'
+    port: '3306',
+    multipleStatements: true,
+    debug: true
 });
+
+var script = '';
 
 connection.connect();
 connection.query('create table crud', function (error, results, fields) {
@@ -41,7 +45,7 @@ app.get('/crud', (req, res) => {
     res.send('recive');
 });
 
-connection.end();
+connection.destroy();
 
 app.listen(port, () => {
     console.log(`running at http:/localhost:${port}`);
