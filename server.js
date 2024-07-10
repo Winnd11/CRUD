@@ -4,6 +4,7 @@ const port = 5500;
 const path = require('path');
 const sassMiddleware = require('node-sass-middleware');
 const mysql = require('mysql');
+const { error } = require('console');
 
 //mysql default port 3306                     
 var connection = mysql.createConnection({
@@ -15,11 +16,12 @@ var connection = mysql.createConnection({
     debug: true
 });
 
-var script = '';
+var scriptSql = '';
 
 connection.connect();
-connection.query('create table crud', function (error, results, fields) {
+connection.query(scriptSql, function (error, results, fields) {
     if (error) {
+        connection.destroy();
         throw error;
     } 
     console.log(results);
@@ -45,7 +47,7 @@ app.get('/crud', (req, res) => {
     res.send('recive');
 });
 
-connection.destroy();
+connection.end();
 
 app.listen(port, () => {
     console.log(`running at http:/localhost:${port}`);
