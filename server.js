@@ -23,7 +23,7 @@ connection.connect();
 connection.query(scriptSql, function (error, results, fields) {
     if (error) {
         connection.destroy();
-        throw error;
+        console.log(error.stack);
     } 
     console.log(results);
 });
