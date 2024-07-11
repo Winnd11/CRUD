@@ -47,6 +47,7 @@ app.get('/', (req, res) => {
     res.render(path.join(__dirname + '/public/ejs', 'index.ejs'));
 });
 
+// for now it is not working
 app.post('/', (req, res) => {
     var username = req.body.username;
     var email = req.body.email;
@@ -60,6 +61,10 @@ app.post('/', (req, res) => {
     });
 });
 
+// app.post('/', (req, res) => {
+//     connection.query('SELECT');
+// });
+    
 connection.end();
 
 app.listen(port, () => {
