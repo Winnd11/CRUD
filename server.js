@@ -22,7 +22,13 @@ var scriptSql = 'CREATE DATABASE IF NOT EXISTS `crud`; USE crud; CREATE TABLE IF
 connection.connect();
 connection.query(scriptSql, function (error, results, fields) {
     if (error) {
-        connection.destroy();
+        console.log(error.stack);
+    } 
+    console.log(results);
+});
+
+connection.query('select * from users', function (error, results, fields) {
+    if (error) {
         console.log(error.stack);
     } 
     console.log(results);
@@ -30,6 +36,7 @@ connection.query(scriptSql, function (error, results, fields) {
 
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(sassMiddleware( {
     src: __dirname,
@@ -47,13 +54,12 @@ app.get('/', (req, res) => {
     res.render(path.join(__dirname + '/public/ejs', 'index.ejs'));
 });
 
-// for now it is not working
 app.post('/', (req, res) => {
     var username = req.body.username;
     var email = req.body.email;
     var password = req.body.pwd;
 
-    connection.query('INSERT INTO USERS (name, email, password) VALUES (?, ?, ?', [username, email, password], function(error, results, fields) {
+    connection.query('USE CRUD; INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
         if (error) {
             console.log(error.stack);
         }
@@ -61,10 +67,18 @@ app.post('/', (req, res) => {
     });
 });
 
-// app.post('/', (req, res) => {
-//     connection.query('SELECT');
-// });
-    
+app.post('/', (req, res) => {
+    var email2 = req.body.email2;
+    var password2 = req.body.pwd2;
+
+    connection.query('USE CRUD; SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results, fields) {
+        if (error) {
+            console.log(error.stack);
+        }
+        console.log(results);
+    });
+});
+
 connection.end();
 
 app.listen(port, () => {
