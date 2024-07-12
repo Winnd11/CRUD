@@ -48,3 +48,27 @@ function mouseMove(e){
 function mouseUp(e){
     document.removeEventListener('mousemove', mouseMove);
 }
+
+// just for UI purpose
+function handleCredentialResponse(response) {
+    console.log('Encoded JWT ID token: ' + response.credential);
+  }
+  window.onload = function () {
+    google.accounts.id.initialize({
+    //   client_id: 'YOUR_GOOGLE_CLIENT_ID',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById('buttonDiv'),
+      { locale: 'en',
+        theme: 'outline',
+        size: 'medium',
+        shape: 'retangular',
+        text: 'signup_with',
+        width: '100',
+        type: 'stardard'
+      }
+    );
+    google.accounts.id.prompt();
+  };
+  
