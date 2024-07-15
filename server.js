@@ -58,13 +58,20 @@ app.post('/', (req, res) => {
     var username = req.body.username;
     var email = req.body.email;
     var password = req.body.pwd;
-
-    connection.query('USE CRUD; INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
-        if (error) {
-            console.log(error.stack);
-        }
-        console.log(results);
+    
+    connection.query('SELECT * FROM USERS WHERE EMAIL = ?', [email], function(error, results, fields) {
+        results.length === 0 ? insertUser() : registerMessage(); 
     });
+    
+    const insertUser = () => {
+        connection.query('USE CRUD; INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
+            if (error) {
+                console.log(error.stack);
+            }
+            res.sendStatus(200);
+            console.log(username, email, password);
+        });
+    };
 });
 
 app.post('/', (req, res) => {
