@@ -69,8 +69,7 @@ app.post('/', (req, res) => {
             if (error) {
                 console.log(error.stack);
             }
-            res.sendStatus(200);
-            console.log(username, email, password);
+            res.send('Registered!');
         });
     };
 });
