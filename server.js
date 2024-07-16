@@ -44,6 +44,7 @@ app.use(sassMiddleware( {
     debug: true,
     outputStyle: 'compressed',
     indentedSyntax: false, // set true, if you want '.sass' extension instead of '.scss'
+    force: true
 }));
 
 app.set('view engine', 'ejs');
@@ -60,7 +61,7 @@ app.post('/', (req, res) => {
     var password = req.body.pwd;
     
     connection.query('SELECT * FROM USERS WHERE EMAIL = ?', [email], function(error, results, fields) {
-        results.length === 0 ? insertUser() : res.sendStatus(404).send('E-mail already registered'); 
+        results.length === 0 ? insertUser() : res.send(`<p>E-mail already registered <a href=''>localhost:${port}</a></p>`); 
     });
     
     const insertUser = () => {
