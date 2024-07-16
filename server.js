@@ -60,7 +60,7 @@ app.post('/', (req, res) => {
     var password = req.body.pwd;
     
     connection.query('SELECT * FROM USERS WHERE EMAIL = ?', [email], function(error, results, fields) {
-        results.length === 0 ? insertUser() : registerMessage(); 
+        results.length === 0 ? insertUser() : res.sendStatus(404).send('E-mail already registered'); 
     });
     
     const insertUser = () => {
