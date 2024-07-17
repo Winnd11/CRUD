@@ -59,31 +59,39 @@ app.post('/', (req, res) => {
     var username = req.body.username;
     var email = req.body.email;
     var password = req.body.pwd;
-    
-    connection.query('SELECT * FROM USERS WHERE EMAIL = ?', [email], function(error, results, fields) {
-        results.length === 0 ? insertUser() : res.send(`<p>E-mail already registered <a href=''>localhost:${port}</a></p>`); 
-    });
-    
-    const insertUser = () => {
-        connection.query('USE CRUD; INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
-            if (error) {
-                console.log(error.stack);
-            }
-            res.send('Registered!');
-        });
-    };
-});
 
-app.post('/', (req, res) => {
     var email2 = req.body.email2;
     var password2 = req.body.pwd2;
+    
+   if ('signup' === req.body.formType) {
 
-    connection.query('USE CRUD; SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results, fields) {
-        if (error) {
-            console.log(error.stack);
-        }
-        console.log(results);
-    });
+        connection.query('SELECT * FROM USERS WHERE EMAIL = ?', [email], function(error, results, fields) {
+            results.length === 0 ? insertUser() : res.send(`<p style=>E-mail already registered <a href=''>localhost:${port}</a></p>`); 
+        });
+    
+        const insertUser = () => {
+            connection.query('USE CRUD; INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
+                if (error) {
+                    console.log(error.stack);
+                }
+                res.send('Registered!');
+            });
+        };
+    
+    }
+
+    else if ('signin' === req.body.formType) {
+        connection.query('USE CRUD; SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results, fields) {
+            results.length === 1 ? loginUser(email2) : res.send(`<p style=>Error! <a href=''>localhost:${port}</a></p>`); 
+            
+            const loginUser = (email) => {
+                res.send(`<p style=>Welcome back ${email} <a href=''>localhost:${port}</a></p>`);
+                if (error) {
+                    console.log(error.stack);
+                }
+            };
+        });
+    }
 });
 
 connection.end();
