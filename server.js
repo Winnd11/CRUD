@@ -74,8 +74,8 @@ app.post('/', (req, res) => {
     var email = req.body.email;
     var password = req.body.pwd;
 
-    var email2 = req.body.email2;
-    var password2 = req.body.pwd2;
+    var emailLogin = req.body.email2;
+    var passwordLogin = req.body.pwd2;
     
    if ('signup' === req.body.formType) {
 
@@ -88,7 +88,8 @@ app.post('/', (req, res) => {
                 if (error) {
                     console.log(error.stack);
                 }
-                res.send('Registered!');
+                res.redirect('/');
+                console.log('Registered');
             });
         };
     
@@ -96,10 +97,10 @@ app.post('/', (req, res) => {
 
     else if ('signin' === req.body.formType) {
     if (email2 && password2) {
-        connection.query('SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results) {
+        connection.query('SELECT * FROM USERS WHERE (email, password) = (?, ?)', [emailLogin, passwordLogin], function (error, results) {
             if (results.length > 0) {
                 req.session.loggedin = true;
-                res.redirect('/home');
+                res.redirect('/crud');
             } else {
                 res.send(`<p style=>E-mail or Password incorrect! <a href=''>localhost:${port}</a></p>`);
             }
@@ -108,11 +109,23 @@ app.post('/', (req, res) => {
     }
 });
 
-app.get('/home', (req, res) => {
+app.get('/crud', (req, res) => {
     if (req.session.loggedin) {
-        res.send('loggin');
+        res.render(path.join(__dirname + '/public/ejs/crud.ejs'));
     } else {
-        res.send('not loggin');
+        res.redirect('/');
+    }
+});
+
+app.post('/crud', (req, res) => {
+    if ('loggout' === req.body.formType) {
+        req.session.destroy(function (error) {
+            if (error) {
+                throw error;
+            }
+            res.redirect('/');
+            console.log('loggout');
+        });
     }
 });
 
