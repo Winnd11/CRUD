@@ -102,7 +102,7 @@ app.post('/', (req, res) => {
                 req.session.loggedin = true;
                 res.redirect('/crud');
             } else {
-                res.send(`<p style=>E-mail or Password incorrect! <a href=''>localhost:${port}</a></p>`);
+                res.send(`<p style=>E-mail or Password incorrect! Redirecting to <a href=''>localhost:${port}</a></p> in ${time}...`);
             }
         });
     }
