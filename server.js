@@ -96,7 +96,7 @@ app.post('/', (req, res) => {
 
     else if ('signin' === req.body.formType) {
     if (email2 && password2) {
-        connection.query('USE CRUD; SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results) {
+        connection.query('SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results) {
             if (results.length > 0) {
                 req.session.loggedin = true;
                 res.redirect('/home');
