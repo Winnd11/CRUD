@@ -84,7 +84,7 @@ app.post('/', (req, res) => {
         });
     
         const insertUser = () => {
-            connection.query('USE CRUD; INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
+            connection.query('INSERT INTO USERS (name, email, password) VALUES (?, ?, ?)', [username, email, password], function(error, results, fields) {
                 if (error) {
                     console.log(error.stack);
                 }
