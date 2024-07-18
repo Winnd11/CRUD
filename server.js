@@ -15,6 +15,12 @@ const app = express();
 const port = 5500;
 const __dirname = path.resolve();
 
+app.use(session({
+    secret: 'qwerty',
+    resave: true,
+    saveUninitialized: true
+}));
+
 //mysql default port 3306                     
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -89,16 +95,24 @@ app.post('/', (req, res) => {
     }
 
     else if ('signin' === req.body.formType) {
-        connection.query('USE CRUD; SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results, fields) {
-            results.length === 1 ? loginUser(email2) : res.send(`<p style=>Error! <a href=''>localhost:${port}</a></p>`); 
-            
-            const loginUser = (email) => {
-                res.send(`<p style=>Welcome back ${email} <a href=''>localhost:${port}</a></p>`);
-                if (error) {
-                    console.log(error.stack);
-                }
-            };
+    if (email2 && password2) {
+        connection.query('USE CRUD; SELECT * FROM USERS WHERE (email, password) = (?, ?)', [email2, password2], function (error, results) {
+            if (results.length > 0) {
+                req.session.loggedin = true;
+                res.redirect('/home');
+            } else {
+                res.send(`<p style=>E-mail or Password incorrect! <a href=''>localhost:${port}</a></p>`);
+            }
         });
+    }
+    }
+});
+
+app.get('/home', (req, res) => {
+    if (req.session.loggedin) {
+        res.send('loggin');
+    } else {
+        res.send('not loggin');
     }
 });
 
