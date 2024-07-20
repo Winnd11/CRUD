@@ -11,6 +11,7 @@ import bodyParser from 'body-parser';
 // const { error } = require('console');
 import error from 'console';
 import session from 'express-session';
+import cookieSession from 'cookie-session';
 const app = express();
 const port = 5500;
 const __dirname = path.resolve();
