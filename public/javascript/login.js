@@ -62,10 +62,10 @@ function handleCredentialResponse(response) {
       document.getElementById('buttonDiv'),
       { locale: 'en',
         theme: 'outline',
-        size: 'medium',
+        size: 'small',
         shape: 'retangular',
         text: 'signup_with',
-        width: '100',
+        width: '170',
         type: 'stardard'
       }
     );
@@ -73,10 +73,10 @@ function handleCredentialResponse(response) {
       document.getElementById('sign-in-button'),
       { locale: 'en',
         theme: 'outline',
-        size: 'medium',
+        size: 'small',
         shape: 'retangular',
         text: 'signin_with',
-        width: '100',
+        width: '170',
         type: 'stardard'
       }
     );
