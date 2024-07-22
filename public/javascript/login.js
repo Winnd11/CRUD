@@ -69,6 +69,17 @@ function handleCredentialResponse(response) {
         type: 'stardard'
       }
     );
+      google.accounts.id.renderButton(
+      document.getElementById('sign-in-button'),
+      { locale: 'en',
+        theme: 'outline',
+        size: 'medium',
+        shape: 'retangular',
+        text: 'signin_with',
+        width: '100',
+        type: 'stardard'
+      }
+    );
     google.accounts.id.prompt();
   };
   
