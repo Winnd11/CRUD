@@ -120,6 +120,19 @@ app.get('/crud', (req, res) => {
 });
 
 app.post('/crud', (req, res) => {
+    let name3 = req.body.name3;
+    let email3 = req.body.email3;
+    let value = req.body.value;
+
+    if ('add' === req.body.formType) {
+        connection.query('INSERT INTO USERS (name, email, password, value) VALUES (?, ?, "123", ?)', [name3, email3, value], function(error, results, fields) {
+            if (error) {
+                throw error;
+            }
+            console.log(results);
+        });
+    }
+    
     if ('loggout' === req.body.formType) {
         req.session.destroy(function (error) {
             if (error) {
