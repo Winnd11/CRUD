@@ -66,8 +66,8 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'));
-    req.flash('message', 'Something is wrong');
+    const message = req.flash('message');
+    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'), {message});
 });
 
 app.post('/', (req, res) => {
@@ -103,8 +103,8 @@ app.post('/', (req, res) => {
                 req.session.loggedin = true;
                 res.redirect('/crud');
             } else {
-                // res.send(`<p style=>E-mail or Password incorrect! <a href=''>localhost:${port}</a></p>`);
-                res.send(req.flash('message'));
+                req.flash('message', 'Login failed');
+                res.redirect('/');
             }
         });
     }
