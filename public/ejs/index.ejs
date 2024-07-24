@@ -43,6 +43,10 @@
                   <label for="check">I agree to the <a href="#">terms and conditions.</a></label>
               </div>
               <button type="submit" id="sign-button" name="formType" value="signin">Sign In</button>
+            <p style="margin-left: 50%; max-width: min-content; transform: translateX(-8px); color: #c4bebe;">Or</p>
+              <% if (message.length > 0) { %>
+                <div><%= message %></div>
+              <% } %>
              <div id="sign-in-button"></div>
                 <div class="line">
                   <ul>
