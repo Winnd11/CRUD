@@ -14,9 +14,12 @@ const __dirname = path.resolve();
 
 app.use(session({
     secret: 'qwerty',
+    cookie: { maxAge: 6000 },
     resave: true,
     saveUninitialized: true
 }));
+
+app.use(flash());
 
 //mysql default port 3306                     
 var connection = mysql.createConnection({
@@ -64,6 +67,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.render(path.join(__dirname + '/public/ejs', 'index.ejs'));
+    req.flash('message', 'Something is wrong');
 });
 
 app.post('/', (req, res) => {
@@ -99,7 +103,8 @@ app.post('/', (req, res) => {
                 req.session.loggedin = true;
                 res.redirect('/crud');
             } else {
-                res.send(`<p style=>E-mail or Password incorrect! <a href=''>localhost:${port}</a></p>`);
+                // res.send(`<p style=>E-mail or Password incorrect! <a href=''>localhost:${port}</a></p>`);
+                res.send(req.flash('message'));
             }
         });
     }
