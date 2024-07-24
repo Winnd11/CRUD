@@ -1,17 +1,13 @@
-// const express = require('express');
 import express from 'express';
-// const path = require('path');
 import path from 'path';
-// const sassMiddleware = require('node-sass-middleware');
 import sassMiddleware from 'node-sass-middleware';
-// const mysql = require('mysql');
 import mysql from 'mysql';
-// const bodyParser = require('body-parser');
 import bodyParser from 'body-parser';
-// const { error } = require('console');
 import error from 'console';
 import session from 'express-session';
 import cookieSession from 'cookie-session';
+import flash from 'connect-flash';
+
 const app = express();
 const port = 5500;
 const __dirname = path.resolve();
