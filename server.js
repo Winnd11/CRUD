@@ -113,7 +113,12 @@ app.post('/', (req, res) => {
 
 app.get('/crud', (req, res) => {
     if (req.session.loggedin) {
-        res.render(path.join(__dirname + '/public/ejs/crud.ejs'));
+        connection.query('SELECT name FROM USERS', function(error, results, fields) {
+            if (error) {
+                throw error;
+            }
+            results.forEach(e => {namesList.push(e);});
+            res.render(path.join(__dirname + '/public/ejs/crud.ejs'), {listSting: JSON.stringify(namesList, null, 2)});
     } else {
         res.redirect('/');
     }
