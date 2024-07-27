@@ -67,7 +67,8 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     const message = req.flash('message');
-    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'), {message});
+        const messageRegistered = req.flash('messageRegistered');
+    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'), {message, messageRegistered});
 });
 
 app.post('/', (req, res) => {
@@ -89,8 +90,8 @@ app.post('/', (req, res) => {
                 if (error) {
                     console.log(error.stack);
                 }
+                req.flash('messageRegistered', 'Registered');
                 res.redirect('/');
-                console.log('Registered');
             });
         };
     
