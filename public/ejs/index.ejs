@@ -21,7 +21,9 @@
                     <label for="check">By creating the account i agree to the <a href="#">terms and conditions.</a></label>
                 </div>
                 <p style="margin-left: 50%; max-width: min-content; transform: translateX(-8px); color: #c4bebe;">Or</p>
-                <button type="submit" id="sign-button" name="formType" value="signup">Sign Up</button>
+                <% if (messageRegistered.length > 0) { %>
+                  <div><%= messageRegistered %></div>
+                <% } %>
                 <div id="sign-up-button"></div>
                   <div class="line">
                     <ul>
