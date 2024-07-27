@@ -1,0 +1,27 @@
+$black-color: #1d1d1b;
+$white-color: #fff;
+
+body {
+    background-color: $black-color;
+    font-family: 'Aeonik-Regular';
+    color: $white-color;
+}
+
+@font-face {
+    font-family: 'Aeonik-Regular';
+    src: url('/fonts/fonnts.com-Aeonik_Regular.ttf');
+}
+
+button {
+    padding: 10px;
+    width: 169px;
+    font-family: 'Aeonik-Regular';
+    border-radius: 2px;
+    border: 1px solid $white-color;
+    cursor: pointer;
+}
+
+#loggout {
+    position: absolute;
+    right: 0;   
+}
