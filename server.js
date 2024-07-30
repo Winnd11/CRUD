@@ -112,6 +112,7 @@ app.post('/', (req, res) => {
     }
 });
 
+const namesList = [];
 app.get('/crud', (req, res) => {
     if (req.session.loggedin) {
         connection.query('SELECT name FROM USERS', function(error, results, fields) {
