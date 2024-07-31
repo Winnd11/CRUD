@@ -16,7 +16,7 @@
         <button type="submit" id="add-button" name="formType" value="add">Add</button>
     </form>
       <% List.forEach(function(e) { %>
-        <p><%= e %></p>
+        <p><%= JSON.stringify(e) %></p>
     <% }); %>
 </body>
 </html>
