@@ -115,7 +115,7 @@ app.post('/', (req, res) => {
 const namesList = [];
 app.get('/crud', (req, res) => {
     if (req.session.loggedin) {
-        connection.query('SELECT name FROM USERS', function(error, results, fields) {
+        connection.query('SELECT name, email, value FROM USERS', function(error, results, fields) {
             if (error) {
                 throw error;
             }
