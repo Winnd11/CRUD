@@ -120,7 +120,7 @@ app.get('/crud', (req, res) => {
                 throw error;
             }
             results.forEach(e => {namesList.push(e);});
-            res.render(path.join(__dirname + '/public/ejs/crud.ejs'), {listSting: JSON.stringify(namesList, null, 2)});
+            res.render(path.join(__dirname + '/public/ejs/crud.ejs'), { List: namesList });
     } else {
         res.redirect('/');
     }
