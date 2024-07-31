@@ -15,8 +15,8 @@
         <input type="text" id="value" name="value" placeholder="Value">
         <button type="submit" id="add-button" name="formType" value="add">Add</button>
     </form>
-    <% if (listSting.length > 0) { %>
-        <div><%= listSting %></div>
-      <% } %>
+      <% List.forEach(function(e) { %>
+        <p><%= e %></p>
+    <% }); %>
 </body>
 </html>
