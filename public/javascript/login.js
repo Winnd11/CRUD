@@ -26,6 +26,11 @@ const minWidth = 0;
 const card = document.querySelector('.card');
 
 card.addEventListener('mousedown', mouseDown);
+card.addEventListener('click', mouseClick);
+
+function mouseClick() {
+    
+}
 
 function mouseDown(e){
     startX = e.clientX;
