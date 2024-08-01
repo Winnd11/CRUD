@@ -83,7 +83,7 @@ app.post('/', (req, res) => {
    if ('signup' === req.body.formType) {
 
         connection.query('SELECT * FROM USERS WHERE EMAIL = ?', [email], function(error, results, fields) {
-            results.length === 0 ? insertUser() : res.send(`<p style=>E-mail already registered <a href=''>localhost:${port}</a></p>`); 
+            results.length === 0 ? insertUser() :  req.flash('messageFail', 'E-mail already registered') && res.redirect('/');
         });
     
         const insertUser = () => {
