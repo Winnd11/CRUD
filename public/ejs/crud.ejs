@@ -16,7 +16,7 @@
         <button type="submit" id="add-button" name="formType" value="add">Add</button>
     </form>
       <% List.forEach(function(e) { %>
-        <p><%= JSON.stringify(e, null).replace(/{|}|name|email|value|"|:|,/g, ' ') %></p>
+        <p style="word-spacing: 30em;"><%= JSON.stringify(e, null).replace(/{|}|name|email|value|"|:|,/g, ' ') %></p>
     <% }); %>
 </body>
 </html>
