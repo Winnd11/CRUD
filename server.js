@@ -67,8 +67,9 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     const message = req.flash('message');
-        const messageRegistered = req.flash('messageRegistered');
-    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'), {message, messageRegistered});
+    const messageRegistered = req.flash('messageRegistered');
+    const messageFail = req.flash('messageFail');
+    res.render(path.join(__dirname + '/public/ejs', 'index.ejs'), {message, messageRegistered, messageFail});
 });
 
 app.post('/', (req, res) => {
