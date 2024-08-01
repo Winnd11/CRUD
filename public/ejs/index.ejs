@@ -22,10 +22,10 @@
                 </div>
                 <p style="margin-left: 50%; max-width: min-content; transform: translateX(-8px); color: #c4bebe;">Or</p>
                 <% if (messageRegistered.length > 0) { %>
-                  <div><%= messageRegistered %></div>
+                  <div id="reg"><%= messageRegistered %></div>
                 <% } %>
                 <% if (messageFail.length > 0) { %>
-                  <div><%= messageFail %></div>
+                  <div id="fail"><%= messageFail %></div>
                 <% } %>
                 <div id="sign-up-button"></div>
                   <div class="line">
@@ -50,7 +50,7 @@
               <button type="submit" id="sign-button" name="formType" value="signin">Sign In</button>
             <p style="margin-left: 50%; max-width: min-content; transform: translateX(-8px); color: #c4bebe;">Or</p>
               <% if (message.length > 0) { %>
-                <div><%= message %></div>
+                <div id="me"><%= message %></div>
               <% } %>
              <div id="sign-in-button"></div>
                 <div class="line">
