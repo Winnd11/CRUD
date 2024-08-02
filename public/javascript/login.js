@@ -23,13 +23,24 @@ let startX = 0;
 const maxWidth = 440;
 const minWidth = 0;
 
+let leftX = 23.5;
+let rightX = 463;
+
 const card = document.querySelector('.card');
 
 card.addEventListener('mousedown', mouseDown);
 card.addEventListener('click', mouseClick);
 
 function mouseClick() {
+    const rect = card.getBoundingClientRect();
+  console.log(rect);
+  if (rect.x >= rightX) {
+    console.log('right');
+  }
+  else if (rect.x <= leftX) {
+    console.log('left');
     
+  }
 }
 
 function mouseDown(e){
