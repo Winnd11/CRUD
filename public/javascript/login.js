@@ -32,14 +32,31 @@ card.addEventListener('mousedown', mouseDown);
 card.addEventListener('click', mouseClick);
 
 function mouseClick() {
-    const rect = card.getBoundingClientRect();
-  console.log(rect);
-  if (rect.x >= rightX) {
-    console.log('right');
+const cardX = card.getBoundingClientRect();
+
+  const cardLeft =  card.animate({
+    transform: ['translateX(440px)'],
+  },{
+    duration: 2000,
+    easing: 'ease',
+    fill: 'forwards'
   }
-  else if (rect.x <= leftX) {
-    console.log('left');
-    
+  );
+
+  const cardRight = card.animate({
+    transform: ['translateX(-100px)']
+  },{
+    duration: 2000,
+    easing: 'ease',
+    fill: 'forwards'
+  }
+);
+
+  if (cardX.x === leftX) {
+    cardLeft;
+  }
+  else if (cardX.x === rightX) {
+    cardRight;
   }
 }
 
